@@ -9,6 +9,9 @@ custom ai might be added very easily
 
 Dependencies: pygame, selenium, webdriver_manager, Pillow
 
+Screenshots:
+https://imgur.com/a/Iecee7t
+
 Credits:
 https://shaunlebron.github.io/
 for creating an impressive pacman-like maze generator in js
