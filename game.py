@@ -2,18 +2,22 @@ from queue import Queue
 from random import randint
 import pygame
 import time
-from parse_maze import parse_maze_png
+from parse_maze import parse_maze_png, fetch_maze
+import sys
 
 grid_height = 31
 grid_width = 28
-maze_png_filename = 'maze.png'
+maze_png_filename = 'mazes.png'
 grid_filename = 'grid.pac'
+
+if len(sys.argv) > 1 and sys.argv[1] == '-n':
+    fetch_maze(maze_png_filename)
 
 grid = parse_maze_png(
     maze_png_filename,
     grid_filename,
-    0,  # randint(0, 3),
-    0,  # randint(0, 3)
+    randint(0, 3),
+    randint(0, 3)
 )
 
 
