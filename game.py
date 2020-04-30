@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from queue import Queue
 from random import randint
 import pygame
