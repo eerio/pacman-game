@@ -1,11 +1,12 @@
+#!/usr/bin/env python3
 import base64
 
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from PIL import Image
 import numpy as np
 
-webdriver_path = r"C:\Users\biomi\Desktop\chromedriver_win32\chromedriver.exe"
 
 grid_height = 31
 grid_width = 28
@@ -18,7 +19,7 @@ def log(msg: str):
     print(msg)
 
 
-def save_random_map_png(img_filename: str):
+def fetch_maze(img_filename: str):
     log("Configuring webdriver...")
     chrome_options = Options()
     chrome_options.add_argument('--headless')
@@ -26,7 +27,7 @@ def save_random_map_png(img_filename: str):
     chrome_options.add_argument('--disable-extensions')
 
     log("Opening the webdriver in headless mode...")
-    chrome = webdriver.Chrome(executable_path=webdriver_path, options=chrome_options)
+    chrome = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
     log("Getting the image...")
     chrome.get("https://shaunlebron.github.io/pacman-mazegen/tetris/many.htm")
@@ -103,6 +104,7 @@ def parse_maze_png(img_filename: str, grid_filename: str, grid_x: int, grid_y: i
 def _main():
     img_filename = 'mazes.png'
     grid_filename = 'grid.pac'
+    fetch_maze(img_filename)
     grid = parse_maze_png(img_filename, grid_filename, 0, 0)
     print_grid(grid)
 
